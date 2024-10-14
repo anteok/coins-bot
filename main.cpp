@@ -1,10 +1,10 @@
 #include <QCoreApplication>
-#include <db/connector.h>
-#include <db/tables/user.h>
+#include "db/connector.h"
+#include "db/tables/user.h"
 
 int main(int argc, char *argv[])
 {
-    // QCoreApplication a(argc, argv);
+    QCoreApplication a(argc, argv);
 
     // Set up code that uses the Qt event loop here.
     // Call a.quit() or a.exit() to quit the application.
@@ -20,5 +20,5 @@ int main(int argc, char *argv[])
     UserTable table(connector.get_db());
     table.create(12, "kano");
     table.grant_admin(12);
-    // return a.exec();
+    return a.exec();
 }
