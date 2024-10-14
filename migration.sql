@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS roles (
+	role_id INTEGER PRIMARY KEY,
+	role_name TEXT NOT NULL
+);
+INSERT INTO roles (role_id,role_name) VALUES (1,'admin'), (2,'default') ON CONFLICT (role_id) DO NOTHING;
+CREATE TABLE IF NOT EXISTS users (
+        user_id INTEGER PRIMARY_KEY,
+        nickname TEXT NOT NULL,
+	role_id INTEGER DEFAULT 2,
+	FOREIGN KEY (role_id) REFERENCES roles (role_id) ON DELETE CASCADE ON UPDATE NO ACTION
+);
+CREATE TABLE IF NOT EXISTS balance (
+	_id INTEGER PRIMARY KEY,
+	balance INTEGER,
+	user_id INTEGER,
+	FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE ON UPDATE NO ACTION
+);
