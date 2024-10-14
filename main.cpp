@@ -1,5 +1,6 @@
 #include <QCoreApplication>
 #include <db/connector.h>
+#include <db/tables/user.h>
 
 int main(int argc, char *argv[])
 {
@@ -16,5 +17,8 @@ int main(int argc, char *argv[])
     // If you do not need a running Qt event loop, remove the call
     // to a.exec() or use the Non-Qt Plain C++ Application template.
     databaseConnector connector;
+    UserTable table(connector.get_db());
+    table.create(12, "kano");
+    table.grant_admin(12);
     // return a.exec();
 }

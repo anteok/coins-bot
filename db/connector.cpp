@@ -24,12 +24,14 @@ void databaseConnector::migrate() {
         QTextStream migrationStream (&migration);
         QStringList queries = migrationStream.readAll().split(';');
 
+        QSqlQuery query(this->db);
 
         for (QStringList::Iterator queries_iter = queries.begin(); queries_iter != queries.end(); ++queries_iter) {
-            QSqlQuery query(this->db);
+
             if (((*queries_iter).trimmed().size() > 0) && (!query.exec(*queries_iter))) {
                 qDebug() << query.lastError();
             }
+            query.clear();
         }
 
     } else {
@@ -38,6 +40,9 @@ void databaseConnector::migrate() {
 
 }
 
+QSqlDatabase* databaseConnector::get_db() {
+    return &this->db;
+}
 
 databaseConnector::~databaseConnector() {
     this->db.close();

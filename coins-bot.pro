@@ -8,6 +8,7 @@ CONFIG += c++17 cmdline
 
 SOURCES += \
         db/connector.cpp \
+        db/tables/user.cpp \
         main.cpp
 
 # Default rules for deployment.
@@ -16,4 +17,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    db/connector.h
+    db/connector.h \
+    db/tables/user.h

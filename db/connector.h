@@ -11,6 +11,7 @@ private:
     void migrate();
 public:
     databaseConnector();
+    QSqlDatabase* get_db();
     ~databaseConnector();
 };
 
