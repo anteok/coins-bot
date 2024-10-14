@@ -18,6 +18,8 @@ add_executable(coins-bot main.cpp
         db/tables/user.h
         db/connector.cpp
         db/connector.h
+        db/tables/balance.cpp
+        db/tables/balance.h
 )
 target_link_libraries(coins-bot
         Qt::Core

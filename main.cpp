@@ -1,6 +1,7 @@
 #include <QCoreApplication>
 #include "db/connector.h"
 #include "db/tables/user.h"
+#include "db/tables/balance.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,8 +18,12 @@ int main(int argc, char *argv[])
     // If you do not need a running Qt event loop, remove the call
     // to a.exec() or use the Non-Qt Plain C++ Application template.
     databaseConnector connector;
-    UserTable table(connector.get_db());
-    table.create(12, "kano");
-    table.grant_admin(12);
-    return a.exec();
+
+    UserTable userTable(connector.get_db());
+    userTable.create(12, "kano");
+    userTable.grant_admin(12);
+
+    BalanceTable balanceTable(connector.get_db());
+    balanceTable.create(12, 125);
+    balanceTable.changeBalance(12, -30);
 }

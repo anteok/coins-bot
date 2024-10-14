@@ -1,8 +1,6 @@
 #include "user.h"
 
 #include <QSqlQuery>
-#include <QVariant>
-#include <QDebug>
 #include <QSqlError>
 
 
